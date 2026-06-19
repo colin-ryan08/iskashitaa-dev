@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Iskashitaa Gleaning Program — Volunteer Role Reference</title>
+  <title>Iskashitaa Gleaning Program — Volunteer Role Reference (Tiered Draft)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,7 +28,7 @@
       width: 10.44in;
       min-height: 7.94in;
       margin: 0 auto;
-      padding: 0.2in 0.22in 0.18in;
+      padding: 0.2in 0.22in 0.2in;
       box-shadow: 0 2px 16px rgba(0,0,0,0.15);
       display: flex;
       flex-direction: column;
@@ -50,7 +50,7 @@
       letter-spacing: 0.015em;
     }
     .page-sub {
-      font-size: 7.5pt;
+      font-size: 7.3pt;
       color: #666;
       font-style: italic;
       margin-top: 2px;
@@ -60,15 +60,63 @@
       color: #999;
       text-align: right;
     }
-
-    /* ——— GRID ——— */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 7px;
-      flex: 1;
+    .draft-flag {
+      font-size: 6.5pt;
+      font-weight: 800;
+      color: #A32D2D;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
+
+    /* ——— TIER SECTION ——— */
+    .tier-section { margin-bottom: 5px; }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      color: white;
+      background: var(--tc, #444);
+    }
+    .tier-name-block { display: flex; align-items: baseline; gap: 8px; }
+    .tier-name { font-size: 9.5pt; font-weight: 800; letter-spacing: 0.02em; }
+    .tier-tagline { font-size: 6.8pt; opacity: 0.92; }
+    .tier-stay-pill {
+      font-size: 6.3pt;
+      font-weight: 700;
+      background: rgba(255,255,255,0.22);
+      padding: 2.5px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .tier-cards {
+      display: grid;
+      gap: 7px;
+      margin-top: 6px;
+    }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+    /* ——— ADVANCEMENT BANNER (between tiers) ——— */
+    .advance-banner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 6.7pt;
+      line-height: 1.35;
+      color: #3a3a3a;
+      padding: 4px 10px;
+      margin: 5px 0 7px;
+      border-left: 3px solid #999;
+      background: #F7F7F4;
+      border-radius: 0 4px 4px 0;
+    }
+    .advance-banner .arrow { font-size: 11pt; color: #888; flex-shrink: 0; }
+    .advance-banner strong { color: #1B3A5C; }
 
     /* ——— CARD ——— */
     .card {
@@ -79,21 +127,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 5px 4px 6px;
+      padding: 4px 4px 5px;
       position: relative;
       overflow: hidden;
     }
 
-    .card-step {
+    .order-chip {
       position: absolute;
-      top: 6px;
-      left: 6px;
-      background: var(--c, #185FA5);
-      color: white;
-      font-size: 9.5pt;
+      top: 5px;
+      left: 5px;
+      background: white;
+      border: 1.6px solid var(--c, #185FA5);
+      color: var(--c, #185FA5);
+      font-size: 7.5pt;
       font-weight: 800;
-      width: 22px;
-      height: 22px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -104,9 +153,9 @@
 
     .card-badge {
       position: absolute;
-      top: 8px;
-      right: 6px;
-      font-size: 6pt;
+      top: 6px;
+      right: 5px;
+      font-size: 5.6pt;
       font-weight: 700;
       padding: 2px 5px;
       border-radius: 3px;
@@ -124,82 +173,109 @@
       justify-content: center;
       width: 100%;
       padding: 2px 6px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .card-fig svg {
       width: 100%;
       height: 100%;
-      max-height: 155px;
+      max-height: 108px;
     }
 
     .card-title {
-      font-size: 8.5pt;
+      font-size: 7.8pt;
       font-weight: 700;
       text-align: center;
       color: #111;
-      line-height: 1.2;
-      margin-top: 3px;
+      line-height: 1.15;
+      margin-top: 2px;
     }
 
-    /* ——— COLOR TYPES ——— */
+    .card-sub {
+      font-size: 6.1pt;
+      font-style: italic;
+      color: #777;
+      text-align: center;
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+
+    /* ——— COLOR TYPES (criticality — unchanged meaning from v1) ——— */
     .t-blue  { --c: #185FA5; --bg: #F4F8FF; --badge-bg: #E0EDFF; }
     .t-red   { --c: #A32D2D; --bg: #FFF5F5; --badge-bg: #FDEDED; }
     .t-amber { --c: #854F0B; --bg: #FFFBF4; --badge-bg: #FEF3E2; }
     .t-green { --c: #2E6B14; --bg: #F4FBF0; --badge-bg: #E5F5DC; }
     .t-navy  { --c: #1B3A5C; --bg: #F2F5FA; --badge-bg: #E2EBF4; }
 
-    /* ——— LEGEND CARD ——— */
+    /* ——— TIER ACCENTS ——— */
+    .tier-foundational { --tc: #0F7A66; }
+    .tier-skilled      { --tc: #4A3F8C; }
+    .tier-specialist   { --tc: #7A1F4B; }
+    .tier-support      { --tc: #1B3A5C; }
+
+    /* ——— BOTTOM ROW (support roles + legend) ——— */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr 2.6fr;
+      gap: 7px;
+      margin-top: 4px;
+    }
+
     .legend-card {
-      grid-column: span 2;
       border: 1px solid #ccc;
       border-top: 4px solid #888;
       border-radius: 6px;
       background: #F9F9F7;
-      padding: 10px 14px;
+      padding: 7px 12px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
     .legend-title {
-      font-size: 8pt;
+      font-size: 7.3pt;
       font-weight: 700;
       color: #444;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .legend-rows {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5px 10px;
+      gap: 3px 10px;
     }
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 7px;
-      font-size: 7.5pt;
+      gap: 6px;
+      font-size: 6.6pt;
       color: #333;
     }
 
     .ldot {
-      width: 13px;
-      height: 13px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .lsquare {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
       flex-shrink: 0;
     }
 
     .legend-note {
-      font-size: 6.8pt;
+      font-size: 6.2pt;
       color: #666;
       font-style: italic;
-      margin-top: 9px;
-      line-height: 1.5;
+      margin-top: 5px;
+      line-height: 1.4;
       border-top: 1px solid #ddd;
-      padding-top: 6px;
+      padding-top: 4px;
     }
   </style>
 </head>
@@ -208,483 +284,390 @@
 
   <div class="page-header">
     <div>
-      <div class="page-title">Iskashitaa Gleaning Program — Volunteer Role Reference</div>
-      <div class="page-sub">Point to assign a role on-site · Steps 1 → 11 show increasing experience &amp; responsibility</div>
+      <div class="page-title">Iskashitaa Gleaning Program — Volunteer Role Reference <span class="draft-flag">· Tiered Model Draft</span></div>
+      <div class="page-sub">Foundational → Skilled → Specialist · numbers show a suggested order within each tier, not a requirement · all tiers are valid, complete contribution levels</div>
     </div>
     <div class="page-logo">iskashitaa.org</div>
   </div>
 
-  <div class="card-grid">
-
-    <!-- ═══════════════════════════════════════ ROW 1 ═══ -->
-
-    <!-- STEP 1: HAND PICKER -->
-    <div class="card t-blue">
-      <div class="card-step">1</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Legs -->
-          <line x1="40" y1="70" x2="31" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="44" y1="70" x2="53" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body -->
-          <polygon points="29,32 57,32 53,70 33,70" fill="#1A1A1A"/>
-          <!-- Left arm hangs down-left -->
-          <line x1="29" y1="42" x2="17" y2="60" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Right arm raised toward branch at upper right -->
-          <line x1="57" y1="36" x2="80" y2="18" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Head -->
-          <circle cx="42" cy="14" r="13" fill="#1A1A1A"/>
-
-          <!-- Tree branch sweeping from upper right -->
-          <path d="M 110 4 Q 100 6 80 18" stroke="#4a7c59" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path d="M 102 22 Q 93 17 86 28" stroke="#4a7c59" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <!-- Leaves suggestion -->
-          <ellipse cx="104" cy="10" rx="7" ry="4" fill="#4a7c59" opacity="0.5" transform="rotate(-20 104 10)"/>
-          <!-- Fruits on branch -->
-          <circle cx="80" cy="18" r="8" fill="#E87D0D"/>
-          <circle cx="97" cy="19" r="7" fill="#DD4B22"/>
-          <circle cx="88" cy="30" r="6" fill="#E87D0D"/>
-        </svg>
+  <!-- ═══════════════════════════ FOUNDATIONAL TIER ═══ -->
+  <div class="tier-section">
+    <div class="tier-header tier-foundational">
+      <div class="tier-name-block">
+        <span class="tier-name">FOUNDATIONAL</span>
+        <span class="tier-tagline">Open to every volunteer after orientation — no harvest experience required</span>
       </div>
-      <div class="card-title">Hand Picker</div>
+      <span class="tier-stay-pill">Many volunteers stay here long-term — that's a complete, valued role</span>
     </div>
 
-    <!-- STEP 2: PICKER WITH TOOL -->
-    <div class="card t-blue">
-      <div class="card-step">2</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Legs slightly apart for stability -->
-          <line x1="44" y1="70" x2="34" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="48" y1="70" x2="58" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body -->
-          <polygon points="32,32 60,32 56,70 36,70" fill="#1A1A1A"/>
-          <!-- Head -->
-          <circle cx="44" cy="14" r="13" fill="#1A1A1A"/>
+    <div class="tier-cards cols-4">
 
-          <!-- POLE — long diagonal from lower grip up to basket at top-right -->
-          <line x1="50" y1="64" x2="109" y2="5" stroke="#8B6914" stroke-width="6" stroke-linecap="round"/>
-
-          <!-- Right arm grips upper pole -->
-          <line x1="60" y1="40" x2="76" y2="34" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Left arm grips lower pole -->
-          <line x1="32" y1="46" x2="48" y2="58" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Basket cup at pole tip -->
-          <path d="M 103 5 Q 109 3 109 10 L 106 15 L 101 17 L 96 15 L 93 10 Q 93 3 103 5 Z" fill="none" stroke="#8B6914" stroke-width="2.5"/>
-          <!-- Fruit captured in basket -->
-          <circle cx="101" cy="9" r="7" fill="#E87D0D"/>
-          <!-- Branch nearby suggesting source -->
-          <path d="M 108 0 Q 112 6 109 10" stroke="#4a7c59" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        </svg>
+      <!-- HAND PICKER -->
+      <div class="card t-blue">
+        <div class="order-chip">1</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="70" x2="31" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="44" y1="70" x2="53" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="29,32 57,32 53,70 33,70" fill="#1A1A1A"/>
+            <line x1="29" y1="42" x2="17" y2="60" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="57" y1="36" x2="80" y2="18" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="42" cy="14" r="13" fill="#1A1A1A"/>
+            <path d="M 110 4 Q 100 6 80 18" stroke="#4a7c59" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M 102 22 Q 93 17 86 28" stroke="#4a7c59" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="104" cy="10" rx="7" ry="4" fill="#4a7c59" opacity="0.5" transform="rotate(-20 104 10)"/>
+            <circle cx="80" cy="18" r="8" fill="#E87D0D"/>
+            <circle cx="97" cy="19" r="7" fill="#DD4B22"/>
+            <circle cx="88" cy="30" r="6" fill="#E87D0D"/>
+          </svg>
+        </div>
+        <div class="card-title">Hand Picker</div>
+        <div class="card-sub">Suggested first role</div>
       </div>
-      <div class="card-title">Picker with Tool</div>
+
+      <!-- GROUND GATHERER -->
+      <div class="card t-blue">
+        <div class="order-chip">2</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="42" y1="74" x2="33" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="50" y1="74" x2="54" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="46" y1="72" x2="79" y2="44" stroke="#1A1A1A" stroke-width="20" stroke-linecap="round"/>
+            <circle cx="84" cy="31" r="13" fill="#1A1A1A"/>
+            <line x1="74" y1="52" x2="62" y2="84" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="52" x2="96" y2="80" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="4" y1="110" x2="106" y2="110" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+            <circle cx="46" cy="106" r="7" fill="#E87D0D"/>
+            <circle cx="62" cy="105" r="6" fill="#DD4B22"/>
+            <circle cx="76" cy="107" r="7" fill="#E87D0D"/>
+            <circle cx="90" cy="105" r="6" fill="#E87D0D"/>
+            <path d="M 24 95 L 20 110 L 38 110 L 34 95 Z" fill="none" stroke="#8B6914" stroke-width="2.5"/>
+            <circle cx="30" cy="103" r="4" fill="#E87D0D"/>
+          </svg>
+        </div>
+        <div class="card-title">Ground Gatherer</div>
+        <div class="card-sub">&nbsp;</div>
+      </div>
+
+      <!-- CRATE TRANSPORTER -->
+      <div class="card t-blue">
+        <div class="order-chip">3</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="56" width="74" height="40" rx="4" fill="#F5E8D0" stroke="#8B6914" stroke-width="4"/>
+            <line x1="18" y1="68" x2="92" y2="68" stroke="#8B6914" stroke-width="2.5"/>
+            <line x1="40" y1="68" x2="40" y2="96" stroke="#8B6914" stroke-width="2" opacity="0.5"/>
+            <line x1="62" y1="68" x2="62" y2="96" stroke="#8B6914" stroke-width="2" opacity="0.5"/>
+            <circle cx="30" cy="79" r="7" fill="#E87D0D"/>
+            <circle cx="55" cy="77" r="8" fill="#DD4B22"/>
+            <circle cx="79" cy="79" r="7" fill="#E87D0D"/>
+            <line x1="48" y1="96" x2="37" y2="112" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="56" y1="96" x2="65" y2="112" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="36,28 72,28 68,60 40,60" fill="#1A1A1A"/>
+            <circle cx="54" cy="12" r="13" fill="#1A1A1A"/>
+            <line x1="36" y1="40" x2="20" y2="56" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="72" y1="40" x2="90" y2="56" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">Crate Transporter</div>
+        <div class="card-sub">&nbsp;</div>
+      </div>
+
+      <!-- BRANCH RAKER -->
+      <div class="card t-blue">
+        <div class="order-chip">4</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="48" y1="74" x2="36" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="52" y1="74" x2="60" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="34,32 62,32 58,74 38,74" fill="#1A1A1A"/>
+            <circle cx="46" cy="14" r="13" fill="#1A1A1A"/>
+            <line x1="68" y1="26" x2="16" y2="94" stroke="#8B6914" stroke-width="6" stroke-linecap="round"/>
+            <line x1="6" y1="88" x2="28" y2="100" stroke="#8B6914" stroke-width="6" stroke-linecap="round"/>
+            <line x1="8" y1="88" x2="7" y2="102" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
+            <line x1="13" y1="91" x2="12" y2="104" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
+            <line x1="18" y1="93" x2="17" y2="106" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
+            <line x1="23" y1="96" x2="22" y2="107" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
+            <line x1="28" y1="98" x2="27" y2="108" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
+            <line x1="62" y1="42" x2="72" y2="28" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="34" y1="54" x2="26" y2="70" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="18" cy="108" rx="12" ry="4" fill="#4a7c59" opacity="0.45"/>
+            <ellipse cx="38" cy="109" rx="9" ry="3.5" fill="#8B6914" opacity="0.35"/>
+            <ellipse cx="8" cy="106" rx="7" ry="3" fill="#4a7c59" opacity="0.35"/>
+          </svg>
+        </div>
+        <div class="card-title">Branch Raker</div>
+        <div class="card-sub">&nbsp;</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="advance-banner">
+    <span class="arrow">↓</span>
+    <span><strong>Advance to Skilled</strong> after 2–3 harvests showing consistent, careful technique (Harvest Lead assessment). Staying in Foundational indefinitely is a complete, valued path — advancement is optional, never expected.</span>
+  </div>
+
+  <!-- ═══════════════════════════ SKILLED TIER ═══ -->
+  <div class="tier-section">
+    <div class="tier-header tier-skilled">
+      <div class="tier-name-block">
+        <span class="tier-name">SKILLED</span>
+        <span class="tier-tagline">Requires demonstrated Foundational-tier experience and a specific skill or focus</span>
+      </div>
+      <span class="tier-stay-pill">Equally valid to remain here long-term</span>
     </div>
 
-    <!-- STEP 3: GROUND GATHERER -->
-    <div class="card t-blue">
-      <div class="card-step">3</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Legs (straight down from hips while torso bends forward) -->
-          <line x1="42" y1="74" x2="33" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="50" y1="74" x2="54" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+    <div class="tier-cards cols-4">
 
-          <!-- Torso — thick angled line from hips forward to shoulder -->
-          <line x1="46" y1="72" x2="79" y2="44" stroke="#1A1A1A" stroke-width="20" stroke-linecap="round"/>
-
-          <!-- Head at end of bent torso -->
-          <circle cx="84" cy="31" r="13" fill="#1A1A1A"/>
-
-          <!-- Both arms reach DOWN toward fruit on ground -->
-          <line x1="74" y1="52" x2="62" y2="84" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <line x1="84" y1="52" x2="96" y2="80" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Ground line -->
-          <line x1="4" y1="110" x2="106" y2="110" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-
-          <!-- Fruit scattered on ground -->
-          <circle cx="46" cy="106" r="7" fill="#E87D0D"/>
-          <circle cx="62" cy="105" r="6" fill="#DD4B22"/>
-          <circle cx="76" cy="107" r="7" fill="#E87D0D"/>
-          <circle cx="90" cy="105" r="6" fill="#E87D0D"/>
-
-          <!-- Basket/bucket collecting fruit (optional) -->
-          <path d="M 24 95 L 20 110 L 38 110 L 34 95 Z" fill="none" stroke="#8B6914" stroke-width="2.5"/>
-          <circle cx="30" cy="103" r="4" fill="#E87D0D"/>
-        </svg>
+      <!-- PICKER WITH TOOL -->
+      <div class="card t-blue">
+        <div class="order-chip">1</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="44" y1="70" x2="34" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="48" y1="70" x2="58" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="32,32 60,32 56,70 36,70" fill="#1A1A1A"/>
+            <circle cx="44" cy="14" r="13" fill="#1A1A1A"/>
+            <line x1="50" y1="64" x2="109" y2="5" stroke="#8B6914" stroke-width="6" stroke-linecap="round"/>
+            <line x1="60" y1="40" x2="76" y2="34" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="32" y1="46" x2="48" y2="58" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 103 5 Q 109 3 109 10 L 106 15 L 101 17 L 96 15 L 93 10 Q 93 3 103 5 Z" fill="none" stroke="#8B6914" stroke-width="2.5"/>
+            <circle cx="101" cy="9" r="7" fill="#E87D0D"/>
+            <path d="M 108 0 Q 112 6 109 10" stroke="#4a7c59" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">Picker with Tool</div>
+        <div class="card-sub">&nbsp;</div>
       </div>
-      <div class="card-title">Ground Gatherer</div>
+
+      <!-- LADDER SPOTTER -->
+      <div class="card t-red">
+        <div class="order-chip">2</div>
+        <div class="card-badge">Safety</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="68" y1="5" x2="68" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+            <line x1="88" y1="5" x2="88" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+            <line x1="68" y1="20" x2="88" y2="20" stroke="#888" stroke-width="4"/>
+            <line x1="68" y1="35" x2="88" y2="35" stroke="#888" stroke-width="4"/>
+            <line x1="68" y1="50" x2="88" y2="50" stroke="#888" stroke-width="4"/>
+            <line x1="68" y1="65" x2="88" y2="65" stroke="#888" stroke-width="4"/>
+            <line x1="68" y1="80" x2="88" y2="80" stroke="#888" stroke-width="4"/>
+            <line x1="68" y1="95" x2="88" y2="95" stroke="#888" stroke-width="4"/>
+            <line x1="73" y1="20" x2="71" y2="38" stroke="#1A1A1A" stroke-width="5" opacity="0.25" stroke-linecap="round"/>
+            <line x1="83" y1="20" x2="85" y2="38" stroke="#1A1A1A" stroke-width="5" opacity="0.25" stroke-linecap="round"/>
+            <circle cx="78" cy="12" r="7" fill="#1A1A1A" opacity="0.2"/>
+            <line x1="28" y1="74" x2="18" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="32" y1="74" x2="42" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="17,34 45,34 41,74 21,74" fill="#1A1A1A"/>
+            <circle cx="29" cy="16" r="13" fill="#1A1A1A"/>
+            <line x1="17" y1="44" x2="68" y2="42" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="45" y1="42" x2="88" y2="50" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <polygon points="4,5 14,22 -6,22" fill="#A32D2D" opacity="0.85"/>
+            <line x1="4" y1="10" x2="4" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="4" cy="19" r="1.2" fill="white"/>
+          </svg>
+        </div>
+        <div class="card-title">Ladder Spotter</div>
+        <div class="card-sub">Age 16+ · no multitasking</div>
+      </div>
+
+      <!-- WEIGHER -->
+      <div class="card t-blue">
+        <div class="order-chip">3</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="28" y1="72" x2="18" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="32" y1="72" x2="42" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="16,32 44,32 40,72 20,72" fill="#1A1A1A"/>
+            <circle cx="30" cy="14" r="13" fill="#1A1A1A"/>
+            <line x1="16" y1="44" x2="8" y2="62" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="44" y1="42" x2="64" y2="50" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <rect x="68" y="5" width="28" height="9" rx="3" fill="#777"/>
+            <line x1="82" y1="14" x2="82" y2="22" stroke="#555" stroke-width="3"/>
+            <path d="M 82 22 Q 82 28 76 28 Q 70 28 70 22 L 70 20" fill="none" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+            <rect x="70" y="28" width="24" height="38" rx="4" fill="#E8E4DC" stroke="#666" stroke-width="2.5"/>
+            <rect x="73" y="32" width="18" height="16" rx="2" fill="white" stroke="#aaa" stroke-width="1.5"/>
+            <line x1="82" y1="46" x2="87" y2="38" stroke="#A32D2D" stroke-width="2" stroke-linecap="round"/>
+            <line x1="74" y1="34" x2="76" y2="34" stroke="#888" stroke-width="1.2"/>
+            <line x1="74" y1="38" x2="76" y2="38" stroke="#888" stroke-width="1.2"/>
+            <line x1="74" y1="42" x2="76" y2="42" stroke="#888" stroke-width="1.2"/>
+            <line x1="74" y1="46" x2="76" y2="46" stroke="#888" stroke-width="1.2"/>
+            <line x1="82" y1="66" x2="82" y2="76" stroke="#555" stroke-width="3"/>
+            <path d="M 82 76 Q 82 82 88 82 Q 94 82 94 76" fill="none" stroke="#555" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="88" cy="91" r="10" fill="#E87D0D"/>
+            <circle cx="68" cy="108" r="6" fill="#E87D0D"/>
+            <circle cx="80" cy="106" r="5" fill="#DD4B22"/>
+            <circle cx="92" cy="108" r="6" fill="#E87D0D"/>
+          </svg>
+        </div>
+        <div class="card-title">Weigher</div>
+        <div class="card-sub">&nbsp;</div>
+      </div>
+
+      <!-- RECORDER -->
+      <div class="card t-blue">
+        <div class="order-chip">4</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="46" y1="72" x2="36" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="50" y1="72" x2="60" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="34,32 62,32 58,72 38,72" fill="#1A1A1A"/>
+            <circle cx="48" cy="14" r="13" fill="#1A1A1A"/>
+            <rect x="60" y="26" width="40" height="52" rx="3" fill="#F5EDD5" stroke="#8B6914" stroke-width="2.5"/>
+            <rect x="73" y="22" width="14" height="9" rx="3" fill="#666" stroke="#444" stroke-width="1.5"/>
+            <line x1="65" y1="40" x2="95" y2="40" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
+            <line x1="65" y1="49" x2="95" y2="49" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
+            <line x1="65" y1="58" x2="95" y2="58" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
+            <line x1="65" y1="67" x2="83" y2="67" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
+            <rect x="65" y="34" width="8" height="6" rx="1" fill="#185FA5" opacity="0.2"/>
+            <rect x="76" y="34" width="8" height="6" rx="1" fill="#185FA5" opacity="0.2"/>
+            <rect x="87" y="34" width="8" height="6" rx="1" fill="#185FA5" opacity="0.2"/>
+            <line x1="34" y1="44" x2="60" y2="44" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="62" y1="40" x2="82" y2="52" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="84" y1="50" x2="96" y2="72" stroke="#E8C44A" stroke-width="5" stroke-linecap="round"/>
+            <polygon points="94,69 99,73 95,77 90,73" fill="#333" opacity="0.7"/>
+            <circle cx="95" cy="74" r="2" fill="#1A1A1A" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card-title">Recorder</div>
+        <div class="card-sub">&nbsp;</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="advance-banner">
+    <span class="arrow">↓</span>
+    <span><strong>Advance to Specialist</strong> after demonstrated reliability across Skilled-tier roles (Harvest Lead assessment). Ladder Picker specifically requires prior Ladder Spotter experience — that dependency doesn't change. Remaining in Skilled roles long-term is equally valued.</span>
+  </div>
+
+  <!-- ═══════════════════════════ SPECIALIST TIER ═══ -->
+  <div class="tier-section">
+    <div class="tier-header tier-specialist">
+      <div class="tier-name-block">
+        <span class="tier-name">SPECIALIST</span>
+        <span class="tier-tagline">Highest skill, judgment, or trust — requires demonstrated experience, not just time served</span>
+      </div>
+      <span class="tier-stay-pill">Not everyone needs to reach this tier — and that's fine</span>
     </div>
 
-    <!-- STEP 4: LADDER SPOTTER — SAFETY CRITICAL -->
-    <div class="card t-red">
-      <div class="card-step">4</div>
-      <div class="card-badge">Safety</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- LADDER (prominent, right two-thirds of image) -->
-          <!-- Left rail -->
-          <line x1="68" y1="5" x2="68" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
-          <!-- Right rail -->
-          <line x1="88" y1="5" x2="88" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
-          <!-- Rungs -->
-          <line x1="68" y1="20" x2="88" y2="20" stroke="#888" stroke-width="4"/>
-          <line x1="68" y1="35" x2="88" y2="35" stroke="#888" stroke-width="4"/>
-          <line x1="68" y1="50" x2="88" y2="50" stroke="#888" stroke-width="4"/>
-          <line x1="68" y1="65" x2="88" y2="65" stroke="#888" stroke-width="4"/>
-          <line x1="68" y1="80" x2="88" y2="80" stroke="#888" stroke-width="4"/>
-          <line x1="68" y1="95" x2="88" y2="95" stroke="#888" stroke-width="4"/>
+    <div class="tier-cards cols-3">
 
-          <!-- Ghost of picker on upper ladder (legs visible) -->
-          <line x1="73" y1="20" x2="71" y2="38" stroke="#1A1A1A" stroke-width="5" opacity="0.25" stroke-linecap="round"/>
-          <line x1="83" y1="20" x2="85" y2="38" stroke="#1A1A1A" stroke-width="5" opacity="0.25" stroke-linecap="round"/>
-          <circle cx="78" cy="12" r="7" fill="#1A1A1A" opacity="0.2"/>
-
-          <!-- SPOTTER — left of ladder, body angled toward it, arms extended to rails -->
-          <!-- Legs -->
-          <line x1="28" y1="74" x2="18" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="32" y1="74" x2="42" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body (angled slightly toward ladder) -->
-          <polygon points="17,34 45,34 41,74 21,74" fill="#1A1A1A"/>
-          <!-- Head (slightly turned toward ladder) -->
-          <circle cx="29" cy="16" r="13" fill="#1A1A1A"/>
-          <!-- Left arm reaching to left rail at y~42 -->
-          <line x1="17" y1="44" x2="68" y2="42" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Right arm reaching to right rail -->
-          <line x1="45" y1="42" x2="88" y2="50" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Safety / warning triangle (small, top-left corner) -->
-          <polygon points="4,5 14,22 -6,22" fill="#A32D2D" opacity="0.85"/>
-          <line x1="4" y1="10" x2="4" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="4" cy="19" r="1.2" fill="white"/>
-        </svg>
+      <!-- LADDER PICKER -->
+      <div class="card t-blue">
+        <div class="order-chip">1</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <line x1="14" y1="5" x2="14" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+            <line x1="34" y1="5" x2="34" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+            <line x1="14" y1="20" x2="34" y2="20" stroke="#888" stroke-width="4"/>
+            <line x1="14" y1="35" x2="34" y2="35" stroke="#888" stroke-width="4"/>
+            <line x1="14" y1="50" x2="34" y2="50" stroke="#888" stroke-width="4"/>
+            <line x1="14" y1="65" x2="34" y2="65" stroke="#888" stroke-width="4"/>
+            <line x1="14" y1="80" x2="34" y2="80" stroke="#888" stroke-width="4"/>
+            <line x1="14" y1="95" x2="34" y2="95" stroke="#888" stroke-width="4"/>
+            <line x1="20" y1="65" x2="20" y2="80" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="28" y1="65" x2="28" y2="80" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="10,25 46,25 42,65 14,65" fill="#1A1A1A"/>
+            <circle cx="28" cy="12" r="13" fill="#1A1A1A"/>
+            <line x1="10" y1="38" x2="6" y2="30" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="46" y1="34" x2="80" y2="26" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 110 8 Q 100 14 80 26" stroke="#4a7c59" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M 105 28 Q 96 22 88 32" stroke="#4a7c59" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="80" cy="26" r="8" fill="#E87D0D"/>
+            <circle cx="95" cy="22" r="7" fill="#DD4B22"/>
+            <circle cx="90" cy="34" r="6" fill="#E87D0D"/>
+          </svg>
+        </div>
+        <div class="card-title">Ladder Picker</div>
+        <div class="card-sub">Requires prior Ladder Spotter experience</div>
       </div>
-      <div class="card-title">Ladder Spotter</div>
-    </div>
 
-    <!-- STEP 5: LADDER PICKER -->
-    <div class="card t-blue">
-      <div class="card-step">5</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- LADDER (left side of image) -->
-          <line x1="14" y1="5" x2="14" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
-          <line x1="34" y1="5" x2="34" y2="112" stroke="#888" stroke-width="5" stroke-linecap="round"/>
-          <line x1="14" y1="20" x2="34" y2="20" stroke="#888" stroke-width="4"/>
-          <line x1="14" y1="35" x2="34" y2="35" stroke="#888" stroke-width="4"/>
-          <line x1="14" y1="50" x2="34" y2="50" stroke="#888" stroke-width="4"/>
-          <line x1="14" y1="65" x2="34" y2="65" stroke="#888" stroke-width="4"/>
-          <line x1="14" y1="80" x2="34" y2="80" stroke="#888" stroke-width="4"/>
-          <line x1="14" y1="95" x2="34" y2="95" stroke="#888" stroke-width="4"/>
-
-          <!-- PERSON elevated on ladder — feet on rung at y~65, body above -->
-          <!-- Feet/legs on rungs -->
-          <line x1="20" y1="65" x2="20" y2="80" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="28" y1="65" x2="28" y2="80" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body (torso, elevated) -->
-          <polygon points="10,25 46,25 42,65 14,65" fill="#1A1A1A"/>
-          <!-- Head -->
-          <circle cx="28" cy="12" r="13" fill="#1A1A1A"/>
-          <!-- Left hand gripping left rail -->
-          <line x1="10" y1="38" x2="6" y2="30" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Right arm reaching OUT to fruit on branch -->
-          <line x1="46" y1="34" x2="80" y2="26" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Branch with fruit to the right -->
-          <path d="M 110 8 Q 100 14 80 26" stroke="#4a7c59" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <path d="M 105 28 Q 96 22 88 32" stroke="#4a7c59" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <!-- Fruits near the reaching hand -->
-          <circle cx="80" cy="26" r="8" fill="#E87D0D"/>
-          <circle cx="95" cy="22" r="7" fill="#DD4B22"/>
-          <circle cx="90" cy="34" r="6" fill="#E87D0D"/>
-        </svg>
+      <!-- CULLER IN SITU -->
+      <div class="card t-amber">
+        <div class="order-chip">2</div>
+        <div class="card-badge">Quality</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="58" width="32" height="26" rx="3" fill="#EBF5E1" stroke="#2E6B14" stroke-width="3"/>
+            <polyline points="9,70 16,77 30,63" fill="none" stroke="#2E6B14" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="74" y="60" width="32" height="26" rx="3" fill="#FFF0F0" stroke="#A32D2D" stroke-width="3"/>
+            <line x1="80" y1="66" x2="100" y2="80" stroke="#A32D2D" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="100" y1="66" x2="80" y2="80" stroke="#A32D2D" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="52" y1="72" x2="42" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="56" y1="72" x2="66" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <polygon points="40,32 68,32 64,72 44,72" fill="#1A1A1A"/>
+            <circle cx="54" cy="14" r="13" fill="#1A1A1A"/>
+            <line x1="40" y1="44" x2="20" y2="58" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <line x1="68" y1="44" x2="88" y2="58" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="22" cy="55" r="7" fill="#E87D0D"/>
+            <circle cx="87" cy="57" r="7" fill="#CC3322" opacity="0.75"/>
+            <path d="M 85 53 L 84 57 L 88 55 L 87 60" fill="none" stroke="#800" stroke-width="1.5"/>
+            <circle cx="47" cy="104" r="6" fill="#E87D0D"/>
+            <circle cx="58" cy="106" r="5" fill="#DD4B22"/>
+            <circle cx="67" cy="104" r="5" fill="#E87D0D"/>
+          </svg>
+        </div>
+        <div class="card-title">Culler — In Situ</div>
+        <div class="card-sub">Must review written culling criteria first</div>
       </div>
-      <div class="card-title">Ladder Picker</div>
-    </div>
 
-    <!-- ═══════════════════════════════════════ ROW 2 ═══ -->
-
-    <!-- STEP 6: CRATE TRANSPORTER -->
-    <div class="card t-blue">
-      <div class="card-step">6</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- CRATE rendered first so person arms appear above -->
-          <rect x="18" y="56" width="74" height="40" rx="4" fill="#F5E8D0" stroke="#8B6914" stroke-width="4"/>
-          <!-- Crate top edge / lip -->
-          <line x1="18" y1="68" x2="92" y2="68" stroke="#8B6914" stroke-width="2.5"/>
-          <!-- Slat verticals -->
-          <line x1="40" y1="68" x2="40" y2="96" stroke="#8B6914" stroke-width="2" opacity="0.5"/>
-          <line x1="62" y1="68" x2="62" y2="96" stroke="#8B6914" stroke-width="2" opacity="0.5"/>
-          <!-- Fruits in crate -->
-          <circle cx="30" cy="79" r="7" fill="#E87D0D"/>
-          <circle cx="55" cy="77" r="8" fill="#DD4B22"/>
-          <circle cx="79" cy="79" r="7" fill="#E87D0D"/>
-
-          <!-- Legs (behind crate, partially visible below) -->
-          <line x1="48" y1="96" x2="37" y2="112" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="56" y1="96" x2="65" y2="112" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body -->
-          <polygon points="36,28 72,28 68,60 40,60" fill="#1A1A1A"/>
-          <!-- Head -->
-          <circle cx="54" cy="12" r="13" fill="#1A1A1A"/>
-          <!-- Arms bending down to grip crate sides -->
-          <line x1="36" y1="40" x2="20" y2="56" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <line x1="72" y1="40" x2="90" y2="56" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-        </svg>
+      <!-- HOMEOWNER INTERFACE -->
+      <div class="card t-green">
+        <div class="order-chip">3</div>
+        <div class="card-badge">Highest Trust</div>
+        <div class="card-fig">
+          <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
+            <rect x="80" y="14" width="26" height="68" rx="2" fill="#F5E8D0" stroke="#8B6914" stroke-width="2.5"/>
+            <circle cx="83" cy="50" r="3" fill="#8B6914"/>
+            <circle cx="72" cy="18" r="10" fill="#1A1A1A"/>
+            <polygon points="62,30 82,30 79,68 65,68" fill="#1A1A1A"/>
+            <line x1="74" y1="68" x2="68" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <line x1="77" y1="68" x2="83" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <line x1="62" y1="42" x2="50" y2="52" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <line x1="82" y1="40" x2="90" y2="54" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="28" cy="16" r="10" fill="#1A1A1A"/>
+            <polygon points="17,28 39,28 36,68 20,68" fill="#1A1A1A"/>
+            <line x1="26" y1="68" x2="18" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <line x1="30" y1="68" x2="38" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <line x1="39" y1="40" x2="52" y2="50" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <line x1="17" y1="38" x2="10" y2="54" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+            <rect x="46" y="46" width="26" height="18" rx="2" fill="#F0F4FF" stroke="#185FA5" stroke-width="2.5"/>
+            <polyline points="46,46 59,57 72,46" fill="none" stroke="#185FA5" stroke-width="2"/>
+            <line x1="57" y1="52" x2="57" y2="62" stroke="#185FA5" stroke-width="1.5" opacity="0.5"/>
+            <path d="M 54 54 Q 60 52 60 57 Q 60 62 54 60" fill="none" stroke="#185FA5" stroke-width="1.5" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="card-title">Homeowner Interface</div>
+        <div class="card-sub">Harvest Lead / staff appointed — not automatic</div>
       </div>
-      <div class="card-title">Crate Transporter</div>
+
     </div>
+  </div>
 
-    <!-- STEP 7: WEIGHER -->
-    <div class="card t-blue">
-      <div class="card-step">7</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Person on left -->
-          <line x1="28" y1="72" x2="18" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="32" y1="72" x2="42" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <polygon points="16,32 44,32 40,72 20,72" fill="#1A1A1A"/>
-          <circle cx="30" cy="14" r="13" fill="#1A1A1A"/>
-          <!-- Left arm at side -->
-          <line x1="16" y1="44" x2="8" y2="62" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Right arm pointing toward scale display -->
-          <line x1="44" y1="42" x2="64" y2="50" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
+  <!-- ═══════════════════════════ SUPPORT + LEGEND ═══ -->
+  <div class="bottom-row">
 
-          <!-- HANGING SCALE (spring scale / Salter style) on right -->
-          <!-- Mount bracket at top -->
-          <rect x="68" y="5" width="28" height="9" rx="3" fill="#777"/>
-          <line x1="82" y1="14" x2="82" y2="22" stroke="#555" stroke-width="3"/>
-          <!-- S-hook -->
-          <path d="M 82 22 Q 82 28 76 28 Q 70 28 70 22 L 70 20" fill="none" stroke="#555" stroke-width="3" stroke-linecap="round"/>
-          <!-- Scale body (cylindrical) -->
-          <rect x="70" y="28" width="24" height="38" rx="4" fill="#E8E4DC" stroke="#666" stroke-width="2.5"/>
-          <!-- Scale window / dial -->
-          <rect x="73" y="32" width="18" height="16" rx="2" fill="white" stroke="#aaa" stroke-width="1.5"/>
-          <!-- Needle pointing to reading -->
-          <line x1="82" y1="46" x2="87" y2="38" stroke="#A32D2D" stroke-width="2" stroke-linecap="round"/>
-          <!-- Tick marks on dial -->
-          <line x1="74" y1="34" x2="76" y2="34" stroke="#888" stroke-width="1.2"/>
-          <line x1="74" y1="38" x2="76" y2="38" stroke="#888" stroke-width="1.2"/>
-          <line x1="74" y1="42" x2="76" y2="42" stroke="#888" stroke-width="1.2"/>
-          <line x1="74" y1="46" x2="76" y2="46" stroke="#888" stroke-width="1.2"/>
-          <!-- Bottom hook -->
-          <line x1="82" y1="66" x2="82" y2="76" stroke="#555" stroke-width="3"/>
-          <path d="M 82 76 Q 82 82 88 82 Q 94 82 94 76" fill="none" stroke="#555" stroke-width="3" stroke-linecap="round"/>
-          <!-- Fruit hanging from bottom hook -->
-          <circle cx="88" cy="91" r="10" fill="#E87D0D"/>
-          <!-- Bunch of fruit at base / already weighed pile -->
-          <circle cx="68" cy="108" r="6" fill="#E87D0D"/>
-          <circle cx="80" cy="106" r="5" fill="#DD4B22"/>
-          <circle cx="92" cy="108" r="6" fill="#E87D0D"/>
-        </svg>
-      </div>
-      <div class="card-title">Weigher</div>
-    </div>
-
-    <!-- STEP 8: RECORDER -->
-    <div class="card t-blue">
-      <div class="card-step">8</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Legs -->
-          <line x1="46" y1="72" x2="36" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="50" y1="72" x2="60" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body -->
-          <polygon points="34,32 62,32 58,72 38,72" fill="#1A1A1A"/>
-          <!-- Head -->
-          <circle cx="48" cy="14" r="13" fill="#1A1A1A"/>
-
-          <!-- CLIPBOARD held in front, right side -->
-          <!-- Board -->
-          <rect x="60" y="26" width="40" height="52" rx="3" fill="#F5EDD5" stroke="#8B6914" stroke-width="2.5"/>
-          <!-- Metal clip at top -->
-          <rect x="73" y="22" width="14" height="9" rx="3" fill="#666" stroke="#444" stroke-width="1.5"/>
-          <!-- Writing lines (data being recorded) -->
-          <line x1="65" y1="40" x2="95" y2="40" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
-          <line x1="65" y1="49" x2="95" y2="49" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
-          <line x1="65" y1="58" x2="95" y2="58" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
-          <line x1="65" y1="67" x2="83" y2="67" stroke="#1A1A1A" stroke-width="1.8" opacity="0.45"/>
-          <!-- Small number cells suggesting data -->
-          <rect x="65" y="34" width="8" height="6" rx="1" fill="#185FA5" opacity="0.2"/>
-          <rect x="76" y="34" width="8" height="6" rx="1" fill="#185FA5" opacity="0.2"/>
-          <rect x="87" y="34" width="8" height="6" rx="1" fill="#185FA5" opacity="0.2"/>
-
-          <!-- Left arm holding clipboard from below -->
-          <line x1="34" y1="44" x2="60" y2="44" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Right arm raised with pencil writing -->
-          <line x1="62" y1="40" x2="82" y2="52" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Pencil -->
-          <line x1="84" y1="50" x2="96" y2="72" stroke="#E8C44A" stroke-width="5" stroke-linecap="round"/>
-          <polygon points="94,69 99,73 95,77 90,73" fill="#333" opacity="0.7"/>
-          <!-- Writing motion dot at pencil tip -->
-          <circle cx="95" cy="74" r="2" fill="#1A1A1A" opacity="0.5"/>
-        </svg>
-      </div>
-      <div class="card-title">Recorder</div>
-    </div>
-
-    <!-- STEP 9: CULLER — IN SITU — QUALITY CRITICAL -->
-    <div class="card t-amber">
-      <div class="card-step">9</div>
-      <div class="card-badge">Quality</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- GOOD BOX (left) — green check -->
-          <rect x="4" y="58" width="32" height="26" rx="3" fill="#EBF5E1" stroke="#2E6B14" stroke-width="3"/>
-          <!-- Check mark -->
-          <polyline points="9,70 16,77 30,63" fill="none" stroke="#2E6B14" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-          <!-- BAD PILE / REJECT BOX (right) — red X -->
-          <rect x="74" y="60" width="32" height="26" rx="3" fill="#FFF0F0" stroke="#A32D2D" stroke-width="3"/>
-          <!-- X mark -->
-          <line x1="80" y1="66" x2="100" y2="80" stroke="#A32D2D" stroke-width="3.5" stroke-linecap="round"/>
-          <line x1="100" y1="66" x2="80" y2="80" stroke="#A32D2D" stroke-width="3.5" stroke-linecap="round"/>
-
-          <!-- Person center -->
-          <line x1="52" y1="72" x2="42" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="56" y1="72" x2="66" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <polygon points="40,32 68,32 64,72 44,72" fill="#1A1A1A"/>
-          <circle cx="54" cy="14" r="13" fill="#1A1A1A"/>
-
-          <!-- Left arm extended toward good box -->
-          <line x1="40" y1="44" x2="20" y2="58" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Right arm extended toward reject box -->
-          <line x1="68" y1="44" x2="88" y2="58" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Fruit in left hand (good — going into good box) -->
-          <circle cx="22" cy="55" r="7" fill="#E87D0D"/>
-          <!-- Damaged fruit in right hand (going to reject) -->
-          <circle cx="87" cy="57" r="7" fill="#CC3322" opacity="0.75"/>
-          <!-- Crack on damaged fruit -->
-          <path d="M 85 53 L 84 57 L 88 55 L 87 60" fill="none" stroke="#800" stroke-width="1.5"/>
-
-          <!-- Unsorted fruit pile at feet -->
-          <circle cx="47" cy="104" r="6" fill="#E87D0D"/>
-          <circle cx="58" cy="106" r="5" fill="#DD4B22"/>
-          <circle cx="67" cy="104" r="5" fill="#E87D0D"/>
-        </svg>
-      </div>
-      <div class="card-title">Culler — In Situ</div>
-    </div>
-
-    <!-- STEP 10: BRANCH RAKER -->
-    <div class="card t-blue">
-      <div class="card-step">10</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Legs in wide stance (raking posture) -->
-          <line x1="48" y1="74" x2="36" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <line x1="52" y1="74" x2="60" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body (slight forward lean) -->
-          <polygon points="34,32 62,32 58,74 38,74" fill="#1A1A1A"/>
-          <!-- Head -->
-          <circle cx="46" cy="14" r="13" fill="#1A1A1A"/>
-
-          <!-- RAKE HANDLE diagonal from upper-right hand to lower-left rake head -->
-          <line x1="68" y1="26" x2="16" y2="94" stroke="#8B6914" stroke-width="6" stroke-linecap="round"/>
-
-          <!-- Rake head at lower end of handle -->
-          <line x1="6" y1="88" x2="28" y2="100" stroke="#8B6914" stroke-width="6" stroke-linecap="round"/>
-          <!-- Tines -->
-          <line x1="8" y1="88" x2="7" y2="102" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
-          <line x1="13" y1="91" x2="12" y2="104" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
-          <line x1="18" y1="93" x2="17" y2="106" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
-          <line x1="23" y1="96" x2="22" y2="107" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
-          <line x1="28" y1="98" x2="27" y2="108" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/>
-
-          <!-- Right arm grips upper handle -->
-          <line x1="62" y1="42" x2="72" y2="28" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Left arm grips lower handle -->
-          <line x1="34" y1="54" x2="26" y2="70" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Debris being gathered (leaves / small branches) -->
-          <ellipse cx="18" cy="108" rx="12" ry="4" fill="#4a7c59" opacity="0.45"/>
-          <ellipse cx="38" cy="109" rx="9" ry="3.5" fill="#8B6914" opacity="0.35"/>
-          <ellipse cx="8" cy="106" rx="7" ry="3" fill="#4a7c59" opacity="0.35"/>
-        </svg>
-      </div>
-      <div class="card-title">Branch Raker</div>
-    </div>
-
-    <!-- ═══════════════════════════════════════ ROW 3 ═══ -->
-
-    <!-- STEP 11: HOMEOWNER INTERFACE — HIGHEST TRUST -->
-    <div class="card t-green">
-      <div class="card-step">11</div>
-      <div class="card-badge">Highest Trust</div>
-      <div class="card-fig">
-        <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- DOOR frame on right (homeowner is at their door) -->
-          <rect x="80" y="14" width="26" height="68" rx="2" fill="#F5E8D0" stroke="#8B6914" stroke-width="2.5"/>
-          <!-- Door knob -->
-          <circle cx="83" cy="50" r="3" fill="#8B6914"/>
-
-          <!-- HOMEOWNER (right, smaller / at door) -->
-          <circle cx="72" cy="18" r="10" fill="#1A1A1A"/>
-          <polygon points="62,30 82,30 79,68 65,68" fill="#1A1A1A"/>
-          <line x1="74" y1="68" x2="68" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-          <line x1="77" y1="68" x2="83" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-          <!-- Homeowner arm reaching to receive envelope -->
-          <line x1="62" y1="42" x2="50" y2="52" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-          <!-- Other arm at side -->
-          <line x1="82" y1="40" x2="90" y2="54" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-
-          <!-- VOLUNTEER (left) -->
-          <circle cx="28" cy="16" r="10" fill="#1A1A1A"/>
-          <polygon points="17,28 39,28 36,68 20,68" fill="#1A1A1A"/>
-          <line x1="26" y1="68" x2="18" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-          <line x1="30" y1="68" x2="38" y2="96" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-          <!-- Volunteer arm extending to pass envelope -->
-          <line x1="39" y1="40" x2="52" y2="50" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-          <!-- Other arm at side -->
-          <line x1="17" y1="38" x2="10" y2="54" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-
-          <!-- ENVELOPE being passed between them -->
-          <rect x="46" y="46" width="26" height="18" rx="2" fill="#F0F4FF" stroke="#185FA5" stroke-width="2.5"/>
-          <!-- Envelope flap crease -->
-          <polyline points="46,46 59,57 72,46" fill="none" stroke="#185FA5" stroke-width="2"/>
-          <!-- Dollar sign suggestion inside envelope (donation) -->
-          <line x1="57" y1="52" x2="57" y2="62" stroke="#185FA5" stroke-width="1.5" opacity="0.5"/>
-          <path d="M 54 54 Q 60 52 60 57 Q 60 62 54 60" fill="none" stroke="#185FA5" stroke-width="1.5" opacity="0.5"/>
-        </svg>
-      </div>
-      <div class="card-title">Homeowner Interface</div>
-    </div>
-
-    <!-- HARVEST LEAD (Supporting) -->
+    <!-- HARVEST LEAD -->
     <div class="card t-navy">
-      <div class="card-step" style="font-size:7.5pt;">L</div>
-      <div class="card-badge">Support</div>
+      <div class="card-badge" style="left:5px; right:auto;">Support</div>
       <div class="card-fig">
         <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- Legs -->
           <line x1="48" y1="72" x2="38" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
           <line x1="52" y1="72" x2="62" y2="108" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
-          <!-- Body (slightly broader to suggest authority) -->
           <polygon points="34,30 66,30 62,72 38,72" fill="#1A1A1A"/>
-          <!-- Head (slightly larger) -->
           <circle cx="50" cy="12" r="14" fill="#1A1A1A"/>
-
-          <!-- CLIPBOARD in left hand -->
           <rect x="4" y="38" width="28" height="36" rx="3" fill="#F0E8D0" stroke="#8B6914" stroke-width="2.5"/>
           <rect x="13" y="34" width="10" height="7" rx="2" fill="#555"/>
-          <!-- Lines on clipboard -->
           <line x1="8" y1="50" x2="28" y2="50" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"/>
           <line x1="8" y1="57" x2="28" y2="57" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"/>
           <line x1="8" y1="64" x2="28" y2="64" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"/>
-          <!-- Checkmark on clipboard (things completed) -->
           <polyline points="9,71 14,76 26,66" fill="none" stroke="#2E6B14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-          <!-- Left arm holds clipboard -->
           <line x1="34" y1="44" x2="18" y2="50" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-
-          <!-- Right arm raised POINTING / directing -->
           <line x1="66" y1="38" x2="90" y2="18" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round"/>
-          <!-- Pointing finger (extended) -->
           <line x1="90" y1="18" x2="102" y2="10" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
-          <!-- Small person-dots below to suggest directing a group -->
           <circle cx="80" cy="75" r="6" fill="#1B3A5C" opacity="0.3"/>
           <circle cx="94" cy="70" r="5" fill="#1B3A5C" opacity="0.3"/>
           <circle cx="105" cy="77" r="5" fill="#1B3A5C" opacity="0.3"/>
@@ -694,80 +677,55 @@
         </svg>
       </div>
       <div class="card-title">Harvest Lead</div>
+      <div class="card-sub">Separate track — not part of the tiers</div>
     </div>
 
-    <!-- DRIVER (Supporting) -->
+    <!-- DRIVER -->
     <div class="card t-navy">
-      <div class="card-step" style="font-size:7.5pt;">D</div>
-      <div class="card-badge">Support</div>
+      <div class="card-badge" style="left:5px; right:auto;">Support</div>
       <div class="card-fig">
         <svg viewBox="0 0 110 112" xmlns="http://www.w3.org/2000/svg">
-          <!-- VAN BODY -->
           <rect x="4" y="46" width="102" height="48" rx="6" fill="#E8EEF5" stroke="#1B3A5C" stroke-width="3"/>
-          <!-- Cab / front section -->
           <path d="M 4 46 L 4 34 Q 4 26 18 24 L 56 24 L 56 46 Z" fill="#E8EEF5" stroke="#1B3A5C" stroke-width="3"/>
-          <!-- Windshield -->
           <path d="M 9 44 L 9 33 Q 9 29 18 28 L 52 28 L 52 44 Z" fill="#BDD6EE" stroke="#1B3A5C" stroke-width="1.5"/>
-          <!-- Side windows (cargo area) -->
           <rect x="64" y="52" width="18" height="16" rx="2" fill="#BDD6EE" stroke="#1B3A5C" stroke-width="2"/>
           <rect x="86" y="52" width="14" height="16" rx="2" fill="#BDD6EE" stroke="#1B3A5C" stroke-width="2"/>
-          <!-- Org color stripe on van side -->
           <rect x="60" y="70" width="44" height="5" rx="2" fill="#185FA5" opacity="0.45"/>
-          <!-- Wheels -->
           <circle cx="26" cy="97" r="13" fill="#2C2C2C"/>
           <circle cx="26" cy="97" r="6" fill="#666"/>
           <circle cx="82" cy="97" r="13" fill="#2C2C2C"/>
           <circle cx="82" cy="97" r="6" fill="#666"/>
-          <!-- Ground line -->
           <line x1="0" y1="111" x2="110" y2="111" stroke="#aaa" stroke-width="2"/>
-
-          <!-- DRIVER visible through windshield -->
           <circle cx="30" cy="36" r="8" fill="#1A1A1A"/>
-          <!-- Steering wheel -->
           <circle cx="38" cy="46" r="8" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>
           <line x1="38" y1="38" x2="38" y2="54" stroke="#1A1A1A" stroke-width="2"/>
           <line x1="30" y1="46" x2="46" y2="46" stroke="#1A1A1A" stroke-width="2"/>
-          <!-- Arms to wheel -->
           <line x1="24" y1="42" x2="32" y2="46" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
           <line x1="30" y1="41" x2="44" y2="43" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="card-title">Driver</div>
+      <div class="card-sub">Separate track — not part of the tiers</div>
     </div>
 
-    <!-- LEGEND CARD (spans 2 columns) -->
+    <!-- LEGEND -->
     <div class="legend-card">
-      <div class="legend-title">Role Color Guide</div>
+      <div class="legend-title">Tier &amp; Role Color Guide</div>
       <div class="legend-rows">
-        <div class="legend-item">
-          <span class="ldot" style="background:#185FA5;"></span>
-          <span><strong>Blue</strong> — Standard progression role</span>
-        </div>
-        <div class="legend-item">
-          <span class="ldot" style="background:#A32D2D;"></span>
-          <span><strong>Red</strong> — Safety critical · No multitasking</span>
-        </div>
-        <div class="legend-item">
-          <span class="ldot" style="background:#854F0B;"></span>
-          <span><strong>Amber</strong> — Quality critical · Culling decisions</span>
-        </div>
-        <div class="legend-item">
-          <span class="ldot" style="background:#2E6B14;"></span>
-          <span><strong>Green</strong> — Highest trust · Homeowner contact</span>
-        </div>
-        <div class="legend-item">
-          <span class="ldot" style="background:#1B3A5C;"></span>
-          <span><strong>Navy</strong> — Supporting role (assigned separately)</span>
-        </div>
+        <div class="legend-item"><span class="lsquare" style="background:#0F7A66;"></span><span><strong>Foundational</strong> — entry tier, no experience needed</span></div>
+        <div class="legend-item"><span class="lsquare" style="background:#4A3F8C;"></span><span><strong>Skilled</strong> — needs Foundational experience + a focus skill</span></div>
+        <div class="legend-item"><span class="lsquare" style="background:#7A1F4B;"></span><span><strong>Specialist</strong> — needs demonstrated experience &amp; judgment</span></div>
+        <div class="legend-item"><span class="ldot" style="background:#1B3A5C;"></span><span><strong>Navy</strong> — supporting role, separate track</span></div>
+        <div class="legend-item"><span class="ldot" style="background:#A32D2D;"></span><span><strong>Red dot</strong> — safety critical · no multitasking</span></div>
+        <div class="legend-item"><span class="ldot" style="background:#854F0B;"></span><span><strong>Amber dot</strong> — quality critical · culling decisions</span></div>
       </div>
       <div class="legend-note">
-        Steps 1–11 form the volunteer progression path. All new volunteers start at Step 1.
-        Returning volunteers may be assessed and placed at the appropriate level by the Harvest Lead.
-        Harvest Lead and Driver are assigned separately and are not part of the progression.
+        Tiers describe skill, judgment, and trust level — not obligation. A volunteer may remain at any tier indefinitely; that is a complete, fully valued contribution. Numbers on each card show a suggested order within that tier only — the Harvest Lead may sequence differently based on a volunteer's interest and fit. Moving between tiers still requires demonstrated experience and Harvest Lead assessment.
       </div>
     </div>
 
-  </div><!-- /card-grid -->
+  </div>
+
 </div><!-- /page -->
 </body>
 </html>
