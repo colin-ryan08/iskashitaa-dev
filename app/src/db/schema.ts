@@ -57,14 +57,17 @@ export interface Harvest {
   harvestLeadName: string
   status: HarvestStatus
   totalLbs?: number
-  distributionDestinations: DistributionDestination[]
+  distributionDestinations: DistributionDestination[] // set at Review, once crates are sorted
   notes?: string
   progressionNotes?: string // "ready to advance to Step X" type notes, recommended field
   visitOrder?: number
   addedInField: boolean // true if this stop wasn't pre-scheduled
   archived: boolean
+  reviewed: boolean // true once quality breakdown + destination are entered at Review Queue
 }
 
+// Captured in the field by the Harvest Lead: how much came off each tree, and a rough
+// read on what's left. No quality judgment yet — that happens after crates are consolidated.
 export interface HarvestItem {
   id?: number
   externalId?: string
@@ -72,11 +75,22 @@ export interface HarvestItem {
   treeId: number
   fruitTypeId: number
   lbsHarvested: number
+  estimatedFruitRemaining: RemainingEstimate // closes the capture-rate gap (Section "Known Gaps")
+}
+
+// Captured later at Review, once same-fruit-type crates from this harvest have been
+// consolidated and sorted — one row per fruit type per harvest, not per tree, because
+// sorting mixes crates from different trees of the same fruit together. Salesforce's
+// Harvest Item object still wants these per-tree; Export reapportions lbs back to each
+// tree's HarvestItem proportional to its share of lbsHarvested for that fruit type.
+export interface HarvestFruitQuality {
+  id?: number
+  harvestId: number
+  fruitTypeId: number
   lbsDistributionQuality: number
   lbsFirstUse: number
   lbsPetAnimalFeed: number
   lbsCompost: number
-  estimatedFruitRemaining: RemainingEstimate // closes the capture-rate gap (Section "Known Gaps")
 }
 
 export interface Volunteer {

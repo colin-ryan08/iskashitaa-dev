@@ -1,22 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db/db'
-import type { HarvestItem, RemainingEstimate, DistributionDestination } from '../db/schema'
+import type { HarvestItem, RemainingEstimate } from '../db/schema'
 
 const remainingOptions: Exclude<RemainingEstimate, null>[] = ['Low', 'Medium', 'High']
-const destinationOptions: DistributionDestination[] = [
-  'Refugee Distribution',
-  'Food Pantry',
-  'Preservation',
-  'Compost'
-]
-
-const qualityFields: { field: keyof HarvestItem; label: string }[] = [
-  { field: 'lbsDistributionQuality', label: 'Distribution-quality' },
-  { field: 'lbsFirstUse', label: 'First-use / take-home' },
-  { field: 'lbsPetAnimalFeed', label: 'Pet / animal feed' },
-  { field: 'lbsCompost', label: 'Compost' }
-]
 
 export default function FieldEntry() {
   const { harvestId } = useParams()
@@ -48,21 +35,10 @@ export default function FieldEntry() {
         treeId,
         fruitTypeId,
         lbsHarvested: 0,
-        lbsDistributionQuality: 0,
-        lbsFirstUse: 0,
-        lbsPetAnimalFeed: 0,
-        lbsCompost: 0,
         estimatedFruitRemaining: null,
         ...patch
       })
     }
-  }
-
-  async function toggleDestination(dest: DistributionDestination) {
-    if (!harvest) return
-    const current = harvest.distributionDestinations ?? []
-    const next = current.includes(dest) ? current.filter((d) => d !== dest) : [...current, dest]
-    await db.harvests.update(id, { distributionDestinations: next })
   }
 
   async function setStatus(status: 'Completed' | 'Cancelled') {
@@ -131,29 +107,6 @@ export default function FieldEntry() {
                   </select>
                 </label>
               </div>
-
-              <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                Quality breakdown (lbs)
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                {qualityFields.map(({ field, label }) => (
-                  <label key={field} className="text-sm text-gray-600">
-                    {label}
-                    <input
-                      type="number"
-                      min={0}
-                      inputMode="decimal"
-                      defaultValue={(item?.[field] as number) ?? ''}
-                      onBlur={(e) =>
-                        updateItem(tree.id!, tree.fruitTypeId, {
-                          [field]: Number(e.target.value) || 0
-                        } as Partial<HarvestItem>)
-                      }
-                      className="mt-1 w-full border border-gray-300 rounded-md px-2 py-1.5"
-                    />
-                  </label>
-                ))}
-              </div>
             </div>
           )
         })}
@@ -161,22 +114,6 @@ export default function FieldEntry() {
         {trees && trees.length === 0 && (
           <p className="text-sm text-gray-500">No trees recorded for this property yet — add them in Admin.</p>
         )}
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
-        <p className="text-sm font-medium text-gray-700">Distribution destination</p>
-        <div className="flex flex-wrap gap-3">
-          {destinationOptions.map((opt) => (
-            <label key={opt} className="text-sm text-gray-600 flex items-center gap-1.5">
-              <input
-                type="checkbox"
-                checked={harvest.distributionDestinations?.includes(opt) ?? false}
-                onChange={() => toggleDestination(opt)}
-              />
-              {opt}
-            </label>
-          ))}
-        </div>
       </div>
 
       <label className="block text-sm text-gray-600">
@@ -189,6 +126,11 @@ export default function FieldEntry() {
           placeholder="Site conditions, safety issues, homeowner feedback…"
         />
       </label>
+
+      <p className="text-xs text-gray-500">
+        Quality breakdown and distribution destination are entered later, in Review Queue, once
+        crates from this visit have been consolidated and sorted by fruit type.
+      </p>
 
       <div className="flex gap-3">
         <button

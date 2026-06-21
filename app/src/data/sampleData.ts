@@ -43,6 +43,7 @@ export async function loadSampleData() {
     status: 'Scheduled',
     distributionDestinations: [],
     addedInField: false,
-    archived: false
+    archived: false,
+    reviewed: false
   })
 }
